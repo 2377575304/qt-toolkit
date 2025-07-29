@@ -9,8 +9,17 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+#set(OpenCV_DIR D:/Clib/opencv/build)
+#set(OpenCV_FIND_REQUIRED TRUE)
+#set(OpenCV_FIND_QUIETLY FALSE)
+#find_package(OpenCV REQUIRED)
+
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+
+
+
+
 
 set(PROJECT_SOURCES
         main.cpp
@@ -23,7 +32,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(toolkits
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        page.h page.cpp
+        dialog_pix.h dialog_pix.cpp dialog_pix.ui
+
+
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET toolkits APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

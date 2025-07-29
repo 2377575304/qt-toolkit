@@ -2,6 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "QDebug"
+#include "QListWidgetItem"
+#include "QMap"
+#include "dialog_pix.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -24,7 +28,13 @@ private slots:
 
     void on_pushButton_mine_clicked();
 
+    void on_pushButton_search_clicked();
+
+    void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
+
 private:
     Ui::MainWindow *ui;
+    Dialog_pix *dialog_pix;
+
 };
 #endif // MAINWINDOW_H
