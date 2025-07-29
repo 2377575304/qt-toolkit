@@ -19,6 +19,7 @@ Dialog_pix::~Dialog_pix()
 void Dialog_pix::on_buttonBox_rejected()
 {
     close();
+     ui->lineEdit->clear();
 }
 
 
@@ -28,7 +29,7 @@ void Dialog_pix::on_Bowser_clicked()
         this,                                  // 父窗口
         tr("打开文件"),                         // 对话框标题
         "",
-        tr("所有文件 (*.);;文本文件 (*.txt);;图像(*.png)")   // 文件过滤器
+        tr("所有文件 (*);;文本文件 (*.txt);;图像(*.png)")   // 文件过滤器
         );
     ui->lineEdit->setText(fileName);
 }
@@ -57,7 +58,10 @@ void Dialog_pix::pix( QString add)
         QImage grayImage = image.convertToFormat(QImage::Format_Grayscale8);
         int width =grayImage.width();
         int height =grayImage.height();
-        int step =qMax(width,height)/5;
+        int st = ui->spinBox->value();
+        if(st<5){st = 5;}
+        int step =qMax(width,height)/st;
+
         for (int y = 0; y < height; y += step) {
             for (int x = 0; x < width; x += step) {
                 int sum = 0;
@@ -77,7 +81,16 @@ void Dialog_pix::pix( QString add)
                 }
             }
         }
-        if (!grayImage.save(add)) {
+        //创建新文件路径
+        QString newpath;
+        QFileInfo fileinfo(add);
+        if(fileinfo.isFile()){
+            QString basename = fileinfo.baseName();
+            QString suffix =fileinfo.suffix();
+            newpath = fileinfo.path() + QDir::separator() + basename + "_pix." +suffix ;
+        }
+        //保存文件到新路径
+        if (!grayImage.save(newpath)) {
             qDebug() << "保存图片失败: " << add;
         }
         else {

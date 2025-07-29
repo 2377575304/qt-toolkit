@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>396</width>
-    <height>116</height>
+    <width>400</width>
+    <height>135</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,7 +25,7 @@
      <x>10</x>
      <y>10</y>
      <width>381</width>
-     <height>101</height>
+     <height>111</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -48,11 +48,18 @@
      </layout>
     </item>
     <item>
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>生成文件将保存至源文件地址</string>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="4,1">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>生成文件将保存至源文件地址                      选择step(5-100)：</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="spinBox"/>
+      </item>
+     </layout>
     </item>
     <item>
      <widget class="QPushButton" name="convent">
