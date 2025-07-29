@@ -62,11 +62,11 @@ void MainWindow::on_pushButton_search_clicked()
 
 void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
 {
-    if(item->text() == "apple")
+    if(item->text() == "apple")//
     {qDebug() << "this is a apple!"<<item->text();}
 
     else if(item->text() == "pixpic"){
-        dialog_pix->show();
+        dialog_pix->show();//选择相应工具名
     }
 }
 
