@@ -6,6 +6,7 @@
 #include "QListWidgetItem"
 #include "QMap"
 #include "dialog_pix.h"
+#include "QSettings"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -31,6 +32,11 @@ private slots:
     void on_pushButton_search_clicked();
 
     void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_listWidget_customContextMenuRequested(const QPoint &pos);
+
+    void oncollectitem();
+    void on_listWidget_2_itemDoubleClicked(QListWidgetItem *item);
 
 private:
     Ui::MainWindow *ui;

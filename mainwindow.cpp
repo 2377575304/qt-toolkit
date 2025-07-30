@@ -12,8 +12,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     dialog_pix = new Dialog_pix(this);
     // 初始化列表数据
-    QStringList items = {"apple", "banana", "cherry", "date", "elderberry","pixpic"};
+    QStringList items = {"apple","pixpic"};
     ui->listWidget->addItems(items);
+    //读取收藏得工具
+    QSettings settings("YourCompany", "YourApp");
+    QStringList favorites = settings.value("favorites", QStringList()).toStringList();
+    foreach (const QString& item, favorites)
+    {
+        ui->listWidget_2->addItem(item);
+    }
 
 
 
@@ -61,6 +68,51 @@ void MainWindow::on_pushButton_search_clicked()
 
 
 void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
+{
+    if(item->text() == "apple")//
+    {qDebug() << "this is a apple!"<<item->text();}
+
+    else if(item->text() == "pixpic"){
+        dialog_pix->show();//选择相应工具名
+    }
+}
+
+
+void MainWindow::on_listWidget_customContextMenuRequested(const QPoint &pos)
+{
+    QListWidgetItem *curitem =ui->listWidget->itemAt(pos);
+    if(!curitem)
+        return;
+    QMenu popmenu(this);
+    QAction *collect =new QAction(tr("收藏"),this);
+
+    connect(collect,&QAction::triggered,this,&MainWindow::oncollectitem);
+
+    popmenu.addAction(collect);
+
+    popmenu.exec(QCursor::pos());
+
+}
+
+
+void MainWindow::oncollectitem()
+{
+    QListWidgetItem* curItem = ui->listWidget->currentItem();
+    if (curItem)
+    {
+        qDebug() << "收藏了项目：" << curItem->text();
+      //  ui->listWidget_2->addItem(curItem-text());
+        ui->listWidget_2->addItem(curItem->text());
+
+        QSettings settings("YourCompany", "YourApp");
+        QStringList favorites = settings.value("favorites", QStringList()).toStringList();
+        favorites.append(curItem->text());
+        settings.setValue("favorites", favorites);
+    }
+}
+
+
+void MainWindow::on_listWidget_2_itemDoubleClicked(QListWidgetItem *item)
 {
     if(item->text() == "apple")//
     {qDebug() << "this is a apple!"<<item->text();}
