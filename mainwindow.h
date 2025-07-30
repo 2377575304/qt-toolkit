@@ -7,6 +7,13 @@
 #include "QMap"
 #include "dialog_pix.h"
 #include "QSettings"
+#include <QDesktopServices>
+#include <QUrl>
+#include "QMessageBox"
+#include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
+#include <QPixmap>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -34,8 +41,9 @@ private slots:
     void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
 
     void on_listWidget_customContextMenuRequested(const QPoint &pos);
-
+    void on_listWidget_2_customContextMenuRequested(const QPoint &pos);
     void oncollectitem();
+    void deoncollectitem();
     void on_listWidget_2_itemDoubleClicked(QListWidgetItem *item);
 
 private:

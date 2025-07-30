@@ -33,6 +33,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         dialog_pix.h dialog_pix.cpp dialog_pix.ui
+        home.PNG
 
 
 
